@@ -39,6 +39,19 @@ export class DashboardComponent implements OnInit {
   public lineChartGradientsNumbersOptions:any;
   public lineChartGradientsNumbersLabels:Array<any>;
   public lineChartGradientsNumbersColors:Array<any>
+
+  public honjitu: string = "";
+  public asu: string = "";
+  public asatte: string = "";
+  public mikka: string = "";
+  public yokka: string = "";
+  public ituka: string = "";
+  public muika: string = "";
+
+  public viewday: string = "";
+
+  private jsondata;
+
   // events
   public chartClicked(e:any):void {
     console.log(e);
@@ -144,25 +157,40 @@ export class DashboardComponent implements OnInit {
 
     let today = new Date();
 
+
     let pc: string = "28";
     let hc: string = "9";
     let yr = today.getFullYear() + "";
     let mn = (today.getMonth() + 1) + "";
     let dy = today.getDate() + "";
-    let rg: string = "day";
+    let rg: string = "week";
 
     let api_url: string = "https://tide736.net/api/get_tide.php?pc=" + pc + "&hc=" + hc + "&yr=" + yr + "&mn=" + mn + "&dy=" + dy + "&rg=" + rg;
    
+    this.honjitu = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    this.viewday = this.honjitu;
+    today.setDate(today.getDate() + 1);
+    this.asu = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    today.setDate(today.getDate() + 1);
+    this.asatte = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    today.setDate(today.getDate() + 1);
+    this.mikka = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    today.setDate(today.getDate() + 1);
+    this.yokka = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    today.setDate(today.getDate() + 1);
+    this.ituka = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    today.setDate(today.getDate() + 1);
+    this.muika = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
     axios.get(
       api_url
     )
     .then(res => {
-      let tenki_json_obj = res.data;
+      this.jsondata = res.data;
       console.log(res.data);
 
       // console.log(tenki_json_obj["tide"]["chart"]["2021-10-07"]["tide"]);
-      let tide = tenki_json_obj["tide"]["chart"][yr + "-" + mn + "-" + dy]["tide"];
+      let tide = this.jsondata["tide"]["chart"][yr + "-" + mn + "-" + dy]["tide"];
 
       const nums: number[] = [];
       tide.find((element) => {
@@ -608,4 +636,40 @@ export class DashboardComponent implements OnInit {
 
     this.lineChartGradientsNumbersType = 'bar';
   }
+
+  public changedays(day: number) {
+
+
+    let today = new Date();
+
+    today.setDate(today.getDate() + day);
+    this.viewday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+    // console.log(tenki_json_obj["tide"]["chart"]["2021-10-07"]["tide"]);
+    let tide = this.jsondata["tide"]["chart"][this.viewday]["tide"];
+
+    const nums: number[] = [];
+    tide.find((element) => {
+      // console.log(element["cm"]);
+      nums.push(Number(element["cm"]));
+    });
+    console.log(nums);
+
+
+    this.lineBigDashboardChartData = [
+      {
+        label: "Data",
+
+        pointBorderWidth: 1,
+        pointHoverRadius: 7,
+        pointHoverBorderWidth: 2,
+        pointRadius: 5,
+        fill: true,
+
+        borderWidth: 2,
+        data: nums
+      }
+    ];
+  }
+
 }
