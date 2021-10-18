@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
   public muika: string = "";
 
   public viewday: string = "";
+  public moon: string = "";
 
   private jsondata;
 
@@ -191,6 +192,7 @@ export class DashboardComponent implements OnInit {
 
       // console.log(tenki_json_obj["tide"]["chart"]["2021-10-07"]["tide"]);
       let tide = this.jsondata["tide"]["chart"][yr + "-" + mn + "-" + dy]["tide"];
+      this.moon = this.jsondata["tide"]["chart"][yr + "-" + mn + "-" + dy]["moon"]["title"];
 
       const nums: number[] = [];
       tide.find((element) => {
@@ -647,6 +649,7 @@ export class DashboardComponent implements OnInit {
 
     // console.log(tenki_json_obj["tide"]["chart"]["2021-10-07"]["tide"]);
     let tide = this.jsondata["tide"]["chart"][this.viewday]["tide"];
+    this.moon = this.jsondata["tide"]["chart"][this.viewday]["moon"]["title"];
 
     const nums: number[] = [];
     tide.find((element) => {
