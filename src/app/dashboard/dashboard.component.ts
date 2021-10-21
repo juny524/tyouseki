@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import axios from 'axios'
+import { ApiaccessService } from '../apiaccess.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,6 +52,8 @@ export class DashboardComponent implements OnInit {
   public viewday: string = "";
   public moon: string = "";
 
+  public todays_weather: string = "";
+
   private jsondata;
 
   // events
@@ -72,7 +75,7 @@ export class DashboardComponent implements OnInit {
       return "rgb(" + r + ", " + g + ", " + b + ")";
     }
   }
-  constructor() { }
+  constructor(private apiaccessService: ApiaccessService) { }
 
   ngOnInit() {
     this.chartColor = "#FFFFFF";
@@ -165,6 +168,8 @@ export class DashboardComponent implements OnInit {
     let mn = (today.getMonth() + 1) + "";
     let dy = today.getDate() + "";
     let rg: string = "week";
+
+    // this.apiaccessService.onNotifySharedDataChanged(this);
 
     let api_url: string = "https://tide736.net/api/get_tide.php?pc=" + pc + "&hc=" + hc + "&yr=" + yr + "&mn=" + mn + "&dy=" + dy + "&rg=" + rg;
    
