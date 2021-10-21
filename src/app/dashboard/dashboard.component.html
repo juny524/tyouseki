@@ -5,87 +5,112 @@
 
 <div class="main-content">
     <div class="row">
-        <!-- <div class="col-lg-4">
-      <div class="card card-chart">
-        <div class="card-header">
-          <h5 class="card-category">Global Sales</h5>
-          <h4 class="card-title">Shipped Products</h4>
-          <div ngbDropdown>
-            <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
-              <i class="now-ui-icons loader_gear"></i>
-            </button>
-            <div ngbDropdownMenu class="dropdown-menu-right">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item text-danger" href="#">Remove Data</a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <canvas baseChart id="lineChartExample"
-                        [datasets]="lineChartData"
-                        [labels]="lineChartLabels"
-                        [colors]="lineChartColors"
-                        [options]="lineChartOptions"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="stats">
-            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-          </div>
-        </div>
-      </div>
-    </div> -->
-        <div class="col-lg-4 col-md-6">
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="card card-chart">
+
+
+        <div class="col-md-12">
+            <div class="card">
                 <div class="card-header">
-                    <h5 class="card-category">Email Statistics</h5>
                     <h4 class="card-title">{{viewday}}の大阪の潮汐({{moon}})</h4>
                 </div>
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas baseChart id="barChartSimpleGradientsNumbers" [datasets]="lineChartGradientsNumbersData" [labels]="lineChartGradientsNumbersLabels" [colors]="lineChartGradientsNumbersColors" [options]="lineChartGradientsNumbersOptions" [chartType]="lineChartGradientsNumbersType"
-                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="col-lg-8 ml-auto mr-auto">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(0)">{{honjitu}}</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(1)">{{asu}}</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(2)">{{asatte}}</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(3)">{{mikka}}</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(4)">{{yokka}}</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(5)">{{ituka}}</button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-block" (click)="changedays(6)">{{muika}}</button>
-                            </div>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Weather
+                                </th>
+                                <th>
+                                    Tide
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(0)">{{honjitu}}</button>
+                                    </td>
+                                    <td>
+                                        {{todays_weather}}
+                                    </td>
+                                    <td>
+                                        Oud-Turnhout
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(1)">{{asu}}</button>
+                                    </td>
+                                    <td>
+                                        Curaçao
+                                    </td>
+                                    <td>
+                                        Sinaai-Waas
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(2)">{{asatte}}</button>
+                                    </td>
+                                    <td>
+                                        Netherlands
+                                    </td>
+                                    <td>
+                                        Baileux
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(3)">{{mikka}}</button>
+                                    </td>
+                                    <td>
+                                        ---
+                                    </td>
+                                    <td>
+                                        Overland Park
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(4)">{{yokka}}</button>
+                                    </td>
+                                    <td>
+                                        ---
+                                    </td>
+                                    <td>
+                                        Feldkirchen in Kärnten
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(5)">{{ituka}}</button>
+                                    </td>
+                                    <td>
+                                        ---
+                                    </td>
+                                    <td>
+                                        Gloucester
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary btn-block" (click)="changedays(6)">{{muika}}</button>
+                                    </td>
+                                    <td>
+                                        ---
+                                    </td>
+                                    <td>
+                                        Gloucester
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="row">
 
