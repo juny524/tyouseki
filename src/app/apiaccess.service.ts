@@ -39,7 +39,6 @@ export class ApiaccessService {
     let api_url: string = "https://tide736.net/api/get_tide.php?pc=" + pc + "&hc=" + hc + "&yr=" + yr + "&mn=" + mn + "&dy=" + dy + "&rg=" + rg;
 
     return this.http.get(api_url);
-    // httpObj.subscribe(this.getSuccess,this.getError);
   }
 
 }
