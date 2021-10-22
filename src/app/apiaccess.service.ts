@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs'
 import { Subject } from 'rxjs';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {Http} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ApiaccessService {
   private sharedDataSource = new Subject<Object>();
   public sharedDataSource$ = this.sharedDataSource.asObservable();
 
-  constructor(private http:Http) { }
+  constructor(private http: HttpClient) { }
 
   // public onNotifySharedDataChanged(updateed: Kendata) {
   //   console.log('[CommonService] onNotifySharedDataChanged fired.');
@@ -27,6 +27,8 @@ export class ApiaccessService {
   }
 
   getTide() {
+
+
     let today = new Date();
     let pc: string = "28";
     let hc: string = "9";
@@ -37,9 +39,6 @@ export class ApiaccessService {
     let api_url: string = "https://tide736.net/api/get_tide.php?pc=" + pc + "&hc=" + hc + "&yr=" + yr + "&mn=" + mn + "&dy=" + dy + "&rg=" + rg;
 
     return this.http.get(api_url);
-
-
   }
-
 
 }
