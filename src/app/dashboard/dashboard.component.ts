@@ -159,11 +159,6 @@ export class DashboardComponent implements OnInit {
     // .finally(() => {
     // });
 
-    this.apiaccessService.getTide()
-      .subscribe((apidata: Object) => {
-        
-        console.log(" ------------- " + apidata["message"] + " ------------- ");
-      });
 
     let today = new Date();
 
@@ -174,6 +169,13 @@ export class DashboardComponent implements OnInit {
     let mn = (today.getMonth() + 1) + "";
     let dy = today.getDate() + "";
     let rg: string = "week";
+
+    
+    this.apiaccessService.getTide()
+      .subscribe((apidata: Object) => {
+        console.log(apidata["message"]);
+        this.moon = apidata["tide"]["chart"][yr + "-" + mn + "-" + dy]["moon"]["title"];
+      });
 
     // this.apiaccessService.onNotifySharedDataChanged(this);
 
@@ -203,7 +205,7 @@ export class DashboardComponent implements OnInit {
 
       // console.log(tenki_json_obj["tide"]["chart"]["2021-10-07"]["tide"]);
       let tide = this.jsondata["tide"]["chart"][yr + "-" + mn + "-" + dy]["tide"];
-      this.moon = this.jsondata["tide"]["chart"][yr + "-" + mn + "-" + dy]["moon"]["title"];
+      
 
       const nums: number[] = [];
       tide.find((element) => {
