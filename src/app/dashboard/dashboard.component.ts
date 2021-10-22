@@ -159,6 +159,12 @@ export class DashboardComponent implements OnInit {
     // .finally(() => {
     // });
 
+    this.apiaccessService.getTide()
+      .subscribe((apidata: Object) => {
+        
+        console.log(" ------------- " + apidata["message"] + " ------------- ");
+      });
+
     let today = new Date();
 
 
